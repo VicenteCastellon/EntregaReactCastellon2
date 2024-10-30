@@ -1,14 +1,30 @@
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
-import './App';
+// App.js
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/Navbar/NavBar';
+import ItemListContainer from './components/pages/itemListContainer/ItemListContainer';
+import ItemDetailContainer from './components/pages/itemDetail/ItemDetailContainer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <BrowserRouter>
+      {/* Asegura que NavBar esté fuera de Routes para que siempre se muestre */}
       <NavBar />
-      <ItemListContainer greeting="¡Bienvenido a nuestra tienda!" />
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} /> 
+        <Route path="/category/:id" element={<ItemListContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        <Route path="*" element={<h2>404 not found</h2>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
